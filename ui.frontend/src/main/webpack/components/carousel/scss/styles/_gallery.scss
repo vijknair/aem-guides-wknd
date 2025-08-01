@@ -1,0 +1,114 @@
+/*
+ *  Copyright 2024 Adobe Systems Incorporated
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+/* WKND Carousel - Gallery Style */
+
+.cmp-carousel--gallery {
+    // Gallery container styles
+    position: relative; // Add relative positioning for absolute arrows
+    
+    .cmp-carousel__content {
+        display: grid;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        
+        // Desktop: 4 items visible
+        @media (min-width: 1200px) {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 1fr;
+        }
+        
+        // Tablet: 2 items visible
+        @media (min-width: 768px) and (max-width: 1199px) {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr;
+        }
+        
+        // Mobile: 1 item visible
+        @media (max-width: 767px) {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+        }
+    }
+    
+    // Navigation arrows styling
+    .cmp-carousel__action {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        z-index: 10;
+        
+        &:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        &--previous {
+            left: 1rem;
+        }
+        
+        &--next {
+            right: 1rem;
+        }
+        
+        // Mobile-specific adjustments for better UX
+        @media (max-width: 767px) {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            
+            &--previous {
+                left: 0.5rem;
+            }
+            
+            &--next {
+                right: 0.5rem;
+            }
+        }
+    }
+    
+    // Indicators styling
+    .cmp-carousel__indicators {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        
+        .cmp-carousel__indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            
+            &--active,
+            &:hover {
+                background-color: #333;
+            }
+        }
+    }
+} 
